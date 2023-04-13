@@ -33,7 +33,6 @@ func userHandlers(r *mux.Router) {
 	r.HandleFunc("/api/users", logic.SecurityCheck(true, http.HandlerFunc(getUsers))).Methods(http.MethodGet)
 	r.HandleFunc("/api/oauth/login", auth.HandleAuthLogin).Methods(http.MethodGet)
 	r.HandleFunc("/api/oauth/callback", auth.HandleAuthCallback).Methods(http.MethodGet)
-	r.HandleFunc("/api/oauth/node-handler", socketHandler)
 	r.HandleFunc("/api/oauth/headless", auth.HandleHeadlessSSO)
 	r.HandleFunc("/api/oauth/register/{regKey}", auth.RegisterNodeSSO).Methods(http.MethodGet)
 }
@@ -483,5 +482,5 @@ func socketHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Start handling the session
-	// go auth.SessionHandler(conn)
+	go auth.SessionHandler(conn)
 }

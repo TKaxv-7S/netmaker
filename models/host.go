@@ -120,3 +120,12 @@ type HostUpdate struct {
 	Host   Host
 	Node   Node
 }
+
+// RegisterMsg - login message struct for nodes to join via SSO login
+// Need to change mac to public key for tighter verification ?
+type RegisterMsg struct {
+	RegisterHost Host   `json:"host"`
+	Network      string `json:"network,omitempty"`
+	User         string `json:"user,omitempty"`
+	Password     string `json:"password,omitempty"`
+}

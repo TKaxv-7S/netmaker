@@ -27,7 +27,7 @@ jobs:
       - name: setup git
         run: |
           git config user.name "Github Actions"
-          git config user.emaail "info@netmaker.io"
+          git config user.email "info@netmaker.io"
       - name: create release Branch
         run: |
           git switch -c release_${{ github.event.inputs.version }}

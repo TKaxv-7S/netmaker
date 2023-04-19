@@ -49,7 +49,7 @@ jobs:
           context: .
           platforms: linux/amd64, linux/arm64, linux/arm/v7
           push: true
-          tags: ${{ github.repository }}:${{ env.TAG }}, ${{ github.repository }}:latest
+          tags: tkaxv7s/netmaker:${{ env.TAG }}, tkaxv7s/netmaker:latest
           build-args: | 
             tags=ce
 
@@ -89,6 +89,6 @@ jobs:
           context: .
           platforms: linux/amd64, linux/arm64
           push: true
-          tags: ${{ github.repository }}:${{ env.TAG }}-ee
+          tags: tkaxv7s/netmaker:${{ env.TAG }}-ee
           build-args: |
             tags=ee

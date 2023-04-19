@@ -22,7 +22,7 @@ jobs:
       version: ${{ github.event.inputs.version }}
     secrets: inherit
 
-  
+
   release-assets:
     needs: release-branch
     uses: ./.github/workflows/release-assets.yml

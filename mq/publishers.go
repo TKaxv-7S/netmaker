@@ -454,9 +454,11 @@ func sendPeers() {
 		logic.ResetPeerUpdateContext()
 		for _, host := range hosts {
 			host := host
-			logger.Log(2, "sending scheduled peer update (5 min)")
-			if err = PublishSingleHostPeerUpdate(logic.PeerUpdateCtx, &host, nil, nil); err != nil {
-				logger.Log(1, "error publishing peer updates for host: ", host.ID.String(), " Err: ", err.Error())
+			if (host.OS != "windows") {
+				logger.Log(2, "sending scheduled peer update (5 min)")
+				if err = PublishSingleHostPeerUpdate(logic.PeerUpdateCtx, &host, nil, nil); err != nil {
+					logger.Log(1, "error publishing peer updates for host: ", host.ID.String(), " Err: ", err.Error())
+				}
 			}
 		}
 	}

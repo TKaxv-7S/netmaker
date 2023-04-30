@@ -11,15 +11,16 @@ import (
 )
 
 var (
-	apiHostFilePath string
-	endpoint        string
-	name            string
-	listenPort      int
-	proxyListenPort int
-	mtu             int
-	proxyEnabled    bool
-	isStatic        bool
-	isDefault       bool
+	apiHostFilePath      string
+	endpoint             string
+	name                 string
+	listenPort           int
+	proxyListenPort      int
+	mtu                  int
+	proxyEnabled         bool
+	forbidDetectionHosts []string
+	isStatic             bool
+	isDefault            bool
 )
 
 var hostUpdateCmd = &cobra.Command{
@@ -45,6 +46,7 @@ var hostUpdateCmd = &cobra.Command{
 			apiHost.ProxyListenPort = proxyListenPort
 			apiHost.MTU = mtu
 			apiHost.ProxyEnabled = proxyEnabled
+			apiHost.ForbidDetectionHosts = forbidDetectionHosts
 			apiHost.IsStatic = isStatic
 			apiHost.IsDefault = isDefault
 		}
@@ -60,6 +62,7 @@ func init() {
 	hostUpdateCmd.Flags().IntVar(&proxyListenPort, "proxy_listen_port", 0, "Proxy listen port of the host")
 	hostUpdateCmd.Flags().IntVar(&mtu, "mtu", 0, "Host MTU size")
 	hostUpdateCmd.Flags().BoolVar(&proxyEnabled, "proxy", false, "Enable proxy ?")
+	hostUpdateCmd.Flags().StringArrayVar(&forbidDetectionHosts, "forbid detection hosts", []string{}, "Forbid detection hosts list")
 	hostUpdateCmd.Flags().BoolVar(&isStatic, "static", false, "Make Host Static ?")
 	hostUpdateCmd.Flags().BoolVar(&isDefault, "default", false, "Make Host Default ?")
 	rootCmd.AddCommand(hostUpdateCmd)

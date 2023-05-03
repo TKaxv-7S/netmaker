@@ -450,7 +450,7 @@ func sendPeers() {
 
 		//collectServerMetrics(networks[:])
 	}
-	if force {
+	/*if force {
 		logic.ResetPeerUpdateContext()
 		for _, host := range hosts {
 			host := host
@@ -459,5 +459,5 @@ func sendPeers() {
 				logger.Log(1, "error publishing peer updates for host: ", host.ID.String(), " Err: ", err.Error())
 			}
 		}
-	}
+	}*/
 }
